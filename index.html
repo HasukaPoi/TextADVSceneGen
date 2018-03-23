@@ -16,7 +16,14 @@
       bkimg.src = 'default/udx.png';
       bkimg.onload = function () {
         cxt.drawImage(bkimg, 0, 0);
+        draw(cxt);
+      }
 
+      $('#save').click(function(){
+        var w=window.open(canvas.toDataURL("image/jpeg"),"smallwin","width=1280,height=720");
+      });
+      
+      function draw(cxt){
         cxt.fillStyle = '#ed366188';
         cxt.fillRect(246, 551, 840, 125);
 
@@ -30,16 +37,13 @@
         var txt1="俺は辺りを見回す。平日でもアキバは人が沢山いるはずだ。";
         cxt.fillText(txt1, 295, 562);
       }
-
-      $('#save').click(function(){
-        var w=window.open(canvas.toDataURL("image/jpeg"),"smallwin","width=1280,height=720");
-      });
     });
   </script>
 </head>
 
 <body>
   <p>this file will contain some test code.</p>
+  <p><input  id="fileOne" type="file" /></p>
   <p><button id="save">保存</button></p>
   <canvas id="myCanvas" width="1280" height="720"></canvas>
   
