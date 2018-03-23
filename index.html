@@ -13,178 +13,14 @@
       margin: 0 0.5em;
     }
 
-    .colorpicker {
+    #color {
       width: 3em;
       margin-right: 1.5em
     }
 
-    .preview {
-      font-weight: bold;
-    }
   </style>
   <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
-  <script>
-    $(document).ready(function () {
-
-
-      var txt0 = "【欢迎使用GalSceneGenerator-JS】";
-      var txt1 = "请在页面上方文本框内输入想要添加的文本，暂时不支持自动换行。";
-      var txt2 = "如果不填写说话人名，该行会自动隐藏。";
-      var txt3 = "有些许细节未能完善，敬请谅解。";
-
-      var canvas = document.getElementById('myCanvas');
-      var cxt = canvas.getContext('2d');
-      var img;
-
-      cxt.fillStyle = '#cccccc';
-      cxt.fillRect(0, 0, canvas.width, canvas.height);
-      drawDialog();
-      drawText();
-
-      //读取本地文件
-      var inputOne = document.getElementById('fileOne');
-      inputOne.onchange = function () {
-        var fileList = inputOne.files;
-        var file = fileList[0];
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (e) {
-          dataUrl = reader.result;
-          //加载图片
-          img = new Image();
-          img.onload = function () {
-            drawAll(img);
-          }
-          img.src = dataUrl;
-        }
-      }
-
-      $('#save').click(function () {
-        var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=1280,height=720");
-      });
-      $('#gen').click(function () {
-        txt1 = $("#text1").val();
-        txt2 = $("#text2").val();
-        txt3 = $("#text3").val();
-        txt0 = $("#text0").val() !== "" ? "【" + $("#text0").val() + "】" : "";
-        drawAll();
-      });
-
-      $('.colorpicker').on("input propertychange", function () {
-        try {
-          test = parseInt(this.value);
-          if (this.value===""||test < 0 || test > 255) throw new error();
-        } catch (err) {
-          $(".preview").text('颜色值非法');
-          $(".preview").css("color", "black");
-          return;
-        }
-        rr = parseInt($('#r').val()).toString(16);
-        if (rr.length===1) rr="0"+rr;
-        gg = parseInt($('#g').val()).toString(16);
-        if (gg.length===1) gg="0"+gg;
-        bb = parseInt($('#b').val()).toString(16);
-        if (bb.length===1) bb="0"+bb;
-        aa = parseInt($('#a').val()).toString(16);
-        if (aa.length===1) aa="0"+aa;
-        $('#color').attr("value", rr + gg + bb + aa);
-        $(".preview").text('颜色预览：■');
-        $(".preview").css("color", "#" + rr+gg+bb);  
-      });
-
-      $('#color').on("input propertychange", function () {
-        var re = /^[\dabcdef]{8}$/;
-        if (!re.test(this.value)) {
-          $(".preview").text('颜色值非法');
-          $(".preview").css("color", "black");
-          return;
-        }
-        $('#r').attr("value", parseInt(this.value.slice(0, 2), 16));
-        $('#g').attr("value", parseInt(this.value.slice(2, 4), 16));
-        $('#b').attr("value", parseInt(this.value.slice(4, 6), 16));
-        $('#a').attr("value", parseInt(this.value.slice(6, 8), 16));
-        $(".preview").text('颜色预览：■');
-        $(".preview").css("color", "#" + this.value.slice(0,6));
-      });
-
-      function drawAll() {
-        cxt.clearRect(0, 0, canvas.width, canvas.height);
-        cxt.shadowColor = "#ffffff00";
-        try {
-          var s = canvas.width / img.width > canvas.height / img.height ? canvas.width / img.width : canvas.height / img.height;
-          var w = s * img.width;
-          var h = s * img.height;
-          var x = (canvas.width - w) / 2;
-          var y = (canvas.height - h) / 2;
-          cxt.drawImage(img, x, y, w, h);
-        } catch (err) {
-          cxt.fillStyle = '#cccccc';
-          cxt.fillRect(0, 0, canvas.width, canvas.height);
-        }
-        drawDialog();
-        drawText();
-      }
-
-      function drawDialog() {
-        fillHanasakiRect($("#color").val());
-      }
-
-      function drawText() {
-        drawHanasakiText();
-      }
-
-      function fillHanasakiRect(color) {
-        x = 246;
-        y = 551;
-        width = 815;
-        height = 125;
-        radius = 15;
-        cxt.beginPath();
-        cxt.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2);
-        cxt.lineTo(width - radius + x, y);
-        cxt.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2);
-        cxt.lineTo(width + x, height + y - radius);
-        cxt.arc(width - radius + x, height - radius + y, radius, 0, Math.PI * 1 / 2);
-        cxt.lineTo(radius + x, height + y);
-        cxt.arc(radius + x, height - radius + y, radius, Math.PI * 1 / 2, Math.PI);
-        cxt.closePath();
-
-        cxt.fillStyle = '#' + color;
-        cxt.strokeStyle = '#ffffff' + color.slice(6, 2);
-        cxt.shadowColor = "#ffffff00";
-        cxt.lineWidth = '2';
-
-        cxt.moveTo(261, 594);
-        cxt.lineTo(1041, 594);
-        cxt.moveTo(261, 634);
-        cxt.lineTo(1041, 634);
-        cxt.fill();
-        cxt.stroke();
-      }
-
-      function drawHanasakiText() {
-        cxt.shadowOffsetY = 2;
-        cxt.shadowOffsetX = 2;
-        cxt.shadowBlur = 2;
-        cxt.shadowColor = "#4c0000";
-        cxt.strokeStyle = '#4c0000'
-        cxt.lineWidth = '3';
-        cxt.fillStyle = '#ffffff'
-        cxt.font = '24px 源ノ角ゴシック';
-        cxt.textBaseline = 'top';
-        cxt.strokeText(txt1, 295, 562);
-        cxt.fillText(txt1, 295, 562);
-        cxt.strokeText(txt2, 295, 602);
-        cxt.fillText(txt2, 295, 602);
-        cxt.strokeText(txt3, 295, 642);
-        cxt.fillText(txt3, 295, 642);
-        if (txt0 !== "") {
-          cxt.strokeText(txt0, 251, 521);
-          cxt.fillText(txt0, 251, 521);
-        }
-      }
-    });
-  </script>
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -193,7 +29,7 @@
     <a href="http://hasuka.top">Hasuka</a>制作，在
     <a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a>上开源。
     <br>如果有项目中未提及的缺陷或bug，以及想要的改进和功能，请在GitHub页面内提交Issue。
-    <br>如果您觉得这个工具很有意思，请在GitHub页面点个Star。
+    <br>也欢迎来点个Star。
     <br>
     <input id="fileOne" type="file" />
   </p>
@@ -207,16 +43,14 @@
     <input id="text3" type="text" placeholder="第3行">
   </p>
   <p>
-    自定义颜色(十六进制RGBA) #
-    <input id="color" type="text" value="ed366188" style="width:5em;margin-right:1.5em">
+    自定义颜色(十六进制RGB) #
+    <input id="color" type="text" value="ed3661" style="width:5em;margin-right:1.5em">
     <span class="preview"></span>
   </p>
-  <p>
-    颜色选择器(十进制) R
-    <input id="r" type="text" value="237" class="colorpicker"> G
-    <input id="g" type="text" value="54" class="colorpicker"> B
-    <input id="b" type="text" value="97" class="colorpicker"> A
-    <input id="a" type="text" value="136" class="colorpicker">
+    <p>
+    自定义不透明度(十进制0~255) #
+    <input id="trans" type="text" value="136" style="width:5em;margin-right:1.5em">
+    <span class="preview2"></span>
   </p>
   <p>
     <button id="gen">再次生成</button>
