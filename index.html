@@ -5,36 +5,57 @@
   <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
   <script>
     $(document).ready(function () {
+      var txt1 = "俺は辺りを見回す。平日でもアキバは人が沢山いるはずだ。";
+
       var canvas = document.getElementById('myCanvas');
-      canvas.setAttribute('crossOrigin', 'anonymous');
-      
+      //canvas.setAttribute('crossOrigin', 'anonymous');
       var cxt = canvas.getContext('2d');
 
-      // cxt.fillStyle = '#cccccc';
-      // cxt.fillRect(0,0,1280,720);
       bkimg = new Image();
       bkimg.src = 'default/udx.png';
       bkimg.onload = function () {
         cxt.drawImage(bkimg, 0, 0);
-        draw(cxt);
+        drawDialog();
       }
 
-      $('#save').click(function(){
-        var w=window.open(canvas.toDataURL("image/jpeg"),"smallwin","width=1280,height=720");
+      //读取本地文件
+      var inputOne = document.getElementById('fileOne');
+      inputOne.onchange = function () {
+        var fileList = inputOne.files;
+        var file = fileList[0];
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (e) {
+          dataUrl=reader.result;
+          //console.info(dataUrl);
+          //加载图片
+          var img = new Image();
+          img.onload = function () {
+            cxt.shadowColor = "#ffffff00";
+            cxt.drawImage(img, 0, 0, 1280, 720);
+            //TODO 坐标要计算
+            drawDialog();
+          }
+          img.src = dataUrl;
+        }
+      }
+
+      $('#save').click(function () {
+        var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=1280,height=720");
       });
-      
-      function draw(cxt){
+
+      function drawDialog() {
         cxt.fillStyle = '#ed366188';
+        cxt.shadowColor = "#ffffff00";
         cxt.fillRect(246, 551, 840, 125);
 
         cxt.fillStyle = '#ffffff';
-        cxt.shadowOffsetX=3;
-        cxt.shadowOffsetY=3;
-        cxt.shadowBlur=3;
-        cxt.shadowColor="#00000088";
+        cxt.shadowOffsetX = 3;
+        cxt.shadowOffsetY = 3;
+        cxt.shadowBlur = 3;
+        cxt.shadowColor = "#00000088";
         cxt.font = 'bold 24px 源ノ角ゴシック';
         cxt.textBaseline = 'top';
-        var txt1="俺は辺りを見回す。平日でもアキバは人が沢山いるはずだ。";
         cxt.fillText(txt1, 295, 562);
       }
     });
@@ -43,10 +64,14 @@
 
 <body>
   <p>this file will contain some test code.</p>
-  <p><input  id="fileOne" type="file" /></p>
-  <p><button id="save">保存</button></p>
+  <p>
+    <input id="fileOne" type="file" />
+  </p>
+  <p>
+    <button id="save">保存</button>
+  </p>
   <canvas id="myCanvas" width="1280" height="720"></canvas>
-  
+
 </body>
 
 </html>
