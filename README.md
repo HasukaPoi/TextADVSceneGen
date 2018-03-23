@@ -8,6 +8,8 @@ a JavaScript version of [GalSceneGenerator](https://github.com/HasukaPoi/GalScen
 ## 开发进度
 
 ### 2018年3月23日
+加入了简易的颜色选择器（RGBA）。
+
 可以实时更改背景图片和文字了。
 
 只引入背景图，尝试直接绘制文本框和文字。“保存”按钮可能不能正常工作在所有环境下。
@@ -16,7 +18,8 @@ a JavaScript version of [GalSceneGenerator](https://github.com/HasukaPoi/GalScen
 立项。
 
 ## TODO
-- 加入颜色样式等自定义功能
+- 增加其他样式
+- 改进字体兼容性
 - etc
 
 ## 测试环境
