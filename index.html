@@ -1,22 +1,33 @@
 <html>
 
 <head>
-  <title>main page</title>
+  <title>GalGame场景生成器</title>
+  <style>
+    * {
+      font-size: 24
+    }
+    input,button {
+      padding: 0.5em 0;
+      margin:0 0.5em;
+    }
+  </style>
   <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
   <script>
     $(document).ready(function () {
-      var txt1 = "俺は辺りを見回す。平日でもアキバは人が沢山いるはずだ。";
+      var txt0 = "【说话人】";
+      var txt1 = "第1行";
+      var txt2 = "第2行";
+      var txt3 = "第3行";
 
       var canvas = document.getElementById('myCanvas');
-      //canvas.setAttribute('crossOrigin', 'anonymous');
       var cxt = canvas.getContext('2d');
+      var img;
+      var dataUrl;
 
-      bkimg = new Image();
-      bkimg.src = 'default/udx.png';
-      bkimg.onload = function () {
-        cxt.drawImage(bkimg, 0, 0);
-        drawDialog();
-      }
+      cxt.fillStyle = '#cccccc';
+      cxt.fillRect(0, 0, canvas.width, canvas.height);
+      drawDialog();
+      drawText();
 
       //读取本地文件
       var inputOne = document.getElementById('fileOne');
@@ -26,15 +37,11 @@
         var reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = function (e) {
-          dataUrl=reader.result;
-          //console.info(dataUrl);
+          dataUrl = reader.result;
           //加载图片
-          var img = new Image();
+          img = new Image();
           img.onload = function () {
-            cxt.shadowColor = "#ffffff00";
-            cxt.drawImage(img, 0, 0, 1280, 720);
-            //TODO 坐标要计算
-            drawDialog();
+            drawAll(img);
           }
           img.src = dataUrl;
         }
@@ -43,34 +50,119 @@
       $('#save').click(function () {
         var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=1280,height=720");
       });
+      $('#gen').click(function () {
+        txt1 = $("#text1").val();
+        txt2 = $("#text2").val();
+        txt3 = $("#text3").val();
+        txt0 = $("#text0").val() !== "" ? "【" + $("#text0").val() + "】" : "";
+        drawAll();
+      });
+
+      function drawAll() {
+        cxt.clearRect(0, 0, canvas.width, canvas.height);
+        cxt.shadowColor = "#ffffff00";
+        try {
+          var s = canvas.width / img.width > canvas.height / img.height ? canvas.width / img.width : canvas.height / img.height;
+          var w = s * img.width;
+          var h = s * img.height;
+          var x = (canvas.width - w) / 2;
+          var y = (canvas.height - h) / 2;
+          cxt.drawImage(img, x, y, w, h);
+        } catch (err) {
+          cxt.fillStyle = '#cccccc';
+          cxt.fillRect(0, 0, canvas.width, canvas.height);
+        }
+        drawDialog();
+        drawText();
+      }
 
       function drawDialog() {
-        cxt.fillStyle = '#ed366188';
-        cxt.shadowColor = "#ffffff00";
-        cxt.fillRect(246, 551, 840, 125);
+        fillHanasakiRect("88");
+      }
 
-        cxt.fillStyle = '#ffffff';
-        cxt.shadowOffsetX = 3;
-        cxt.shadowOffsetY = 3;
-        cxt.shadowBlur = 3;
-        cxt.shadowColor = "#00000088";
-        cxt.font = 'bold 24px 源ノ角ゴシック';
+      function drawText() {
+        drawHanasakiText();
+      }
+
+      function fillHanasakiRect(trans) {
+        x=246;
+        y=551;
+        width=815;
+        height=125;
+        radius=15;
+        cxt.beginPath();
+        cxt.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2);
+        cxt.lineTo(width - radius + x, y);
+        cxt.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2);
+        cxt.lineTo(width + x, height + y - radius);
+        cxt.arc(width - radius + x, height - radius + y, radius, 0, Math.PI * 1 / 2);
+        cxt.lineTo(radius + x, height + y);
+        cxt.arc(radius + x, height - radius + y, radius, Math.PI * 1 / 2, Math.PI);
+        cxt.closePath();
+
+        cxt.fillStyle = '#ed3661'+trans;
+        cxt.strokeStyle = '#ffffff'+trans;
+        cxt.shadowColor = "#ffffff00";
+        cxt.lineWidth = '2';
+
+        cxt.moveTo(261, 594);
+        cxt.lineTo(1041, 594);
+        cxt.moveTo(261, 634);
+        cxt.lineTo(1041, 634);
+        cxt.fill();
+        cxt.stroke();
+      }
+
+      function drawHanasakiText() {
+        cxt.shadowOffsetY = 2;
+        cxt.shadowOffsetX = 2;
+        cxt.shadowBlur = 2;
+        cxt.shadowColor = "#4c0000";
+        cxt.strokeStyle = '#4c0000'
+        cxt.lineWidth = '3';
+        cxt.fillStyle = '#ffffff'
+        cxt.font = '24px 源ノ角ゴシック';
         cxt.textBaseline = 'top';
+        cxt.strokeText(txt1, 295, 562);
         cxt.fillText(txt1, 295, 562);
+        cxt.strokeText(txt2, 295, 602);
+        cxt.fillText(txt2, 295, 602);
+        cxt.strokeText(txt3, 295, 642);
+        cxt.fillText(txt3, 295, 642);
+        if (txt0 !== "") {
+          cxt.strokeText(txt0, 251, 521);
+          cxt.fillText(txt0, 251, 521);
+        }
       }
     });
   </script>
 </head>
 
 <body>
-  <p>this file will contain some test code.</p>
+  <!-- <p>this file will contain some test code.</p> -->
   <p>
+    该工具由<a href="http://hasuka.top">Hasuka</a>制作，在<a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a>上开源。
+    <br>如果有项目中未提及的缺陷或bug，以及想要的改进和功能，请在GitHub页面内提交。
+    <br>
     <input id="fileOne" type="file" />
   </p>
   <p>
-    <button id="save">保存</button>
+    <input id="text0" type="text" placeholder="说话人">
   </p>
-  <canvas id="myCanvas" width="1280" height="720"></canvas>
+  <p>
+    <input id="text1" type="text" placeholder="第1行">
+  </p>
+  <p>
+    <input id="text2" type="text" placeholder="第2行">
+  </p>
+  <p>
+    <input id="text3" type="text" placeholder="第3行">
+  </p>
+  <p>
+    <button id="gen">再次生成</button>
+    <button id="save">保存图片</button>
+  </p>
+  <canvas id="myCanvas" width="1280" height="720">您的浏览器不支持Canvas</canvas>
 
 </body>
 

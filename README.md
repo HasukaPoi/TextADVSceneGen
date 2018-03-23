@@ -8,7 +8,7 @@ a JavaScript version of [GalSceneGenerator](https://github.com/HasukaPoi/GalScen
 ## 开发进度
 
 ### 2018年3月23日
-可以实时更改背景图片，暂时会被强制拉伸为1280*720。
+可以实时更改背景图片和文字了。
 
 只引入背景图，尝试直接绘制文本框和文字。“保存”按钮可能不能正常工作在所有环境下。
 
@@ -16,8 +16,7 @@ a JavaScript version of [GalSceneGenerator](https://github.com/HasukaPoi/GalScen
 立项。
 
 ## TODO
-- 完善对话框样式
-- 可自定义图片比例
+- 加入颜色样式等自定义功能
 - etc
 
 ## 测试环境
