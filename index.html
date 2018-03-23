@@ -1,9 +1,48 @@
 <html>
+
 <head>
-<title>main page</title>
-<script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+  <title>main page</title>
+  <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      var canvas = document.getElementById('myCanvas');
+      canvas.setAttribute('crossOrigin', 'anonymous');
+      
+      var cxt = canvas.getContext('2d');
+
+      // cxt.fillStyle = '#cccccc';
+      // cxt.fillRect(0,0,1280,720);
+      bkimg = new Image();
+      bkimg.src = 'default/udx.png';
+      bkimg.onload = function () {
+        cxt.drawImage(bkimg, 0, 0);
+
+        cxt.fillStyle = '#ed366188';
+        cxt.fillRect(246, 551, 840, 125);
+
+        cxt.fillStyle = '#ffffff';
+        cxt.shadowOffsetX=3;
+        cxt.shadowOffsetY=3;
+        cxt.shadowBlur=3;
+        cxt.shadowColor="#00000088";
+        cxt.font = 'bold 24px 源ノ角ゴシック';
+        cxt.textBaseline = 'top';
+        var txt1="俺は辺りを見回す。平日でもアキバは人が沢山いるはずだ。";
+        cxt.fillText(txt1, 295, 562);
+      }
+
+      $('#save').click(function(){
+        var w=window.open(canvas.toDataURL("image/jpeg"),"smallwin","width=1280,height=720");
+      });
+    });
+  </script>
 </head>
+
 <body>
-  now nothing.
+  <p>this file will contain some test code.</p>
+  <p><button id="save">保存</button></p>
+  <canvas id="myCanvas" width="1280" height="720"></canvas>
+  
 </body>
+
 </html>
