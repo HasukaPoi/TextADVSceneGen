@@ -1,9 +1,7 @@
 # GalSceneGenerator-JS
-a JavaScript version of [GalSceneGenerator](https://github.com/HasukaPoi/GalSceneGenerator).
+A tool to generate a picture of text-ADV-like scene. [[Hit here to try]](http://hasuka.top/GalSceneGenerator-JS)
 
-之前借助Python的pillow库写了一个生成类似于文字ADV场景的工具，但是使用局限性较大，代码改起来麻烦，效果也不好看。而且跨平台支持做起来麻烦。
-
-……然后我就想起来为什么不用Js写呢……利用HTML5的Canvas标签来绘图，完全靠前端，也是静态页面，可以直接挂在GitHub Page。→[点这里查看现在的效果](http://hasuka.top/GalSceneGenerator-JS)
+Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/GalSceneGenerator).
 
 ## 功能简述
 - 通过传入的背景图片和剧情/对话文本生成一张类似于文字ADV场景截图的图片。
@@ -13,7 +11,7 @@ a JavaScript version of [GalSceneGenerator](https://github.com/HasukaPoi/GalScen
 - 说话人名字两侧会自动加上“【】”，留空则全空。右下角的语音重放图标会跟随自动显示/隐藏。
 
 ## 开发进度
-###2018年3月24日
+### 2018年3月24日
 更改了颜色、透明度自定义框的显示布局。加入了工具栏和文本框右下角的铃铛。加入了自动显示/隐藏的语音重放图标。
 
 ### 2018年3月23日
