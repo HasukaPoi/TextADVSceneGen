@@ -5,13 +5,16 @@ Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/Ga
 
 ## 功能简述
 - 通过传入的背景图片和剧情/对话文本生成一张类似于文字ADV场景截图的图片。
-- 现时唯一的样式仿照「花咲WORK SPRING!」构建。可以更改透明度。
-- 虽然文本框颜色也可以自定义但是不推荐这么做。
+- 现时样式仿照了*Hanasaki Work Spring!*和*Floral\*Flow Love*。
+- 根据样式不同自动在说话人两侧加上符号或是在语句前后加上引号等。
+- 可以更改文本框透明度等。
 - 图片不论比例、尺寸如何，会等比缩放至满屏1280*720（用UIKit的话来说就是ScaleAspectFit）。
-- 说话人名字两侧会自动加上“【】”，留空则全空。右下角的语音重放图标会跟随自动显示/隐藏。
+
 
 ## 开发进度
 ### 2018年3月24日
+整理HTML+CSS布局；加入样式：FloFlo。
+
 更改了颜色、透明度自定义框的显示布局。加入了工具栏和文本框右下角的铃铛。加入了自动显示/隐藏的语音重放图标。
 
 ### 2018年3月23日
@@ -25,8 +28,9 @@ Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/Ga
 立项。
 
 ## TODO
-- 增加其他样式
 - 改进字体兼容性
+- 增加更多样式
+- 重写英文版README
 - etc
 
 ## 测试环境
