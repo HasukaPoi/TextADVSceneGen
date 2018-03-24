@@ -1,6 +1,6 @@
 
 $(document).ready(function () {
-  var txt0 = "【欢迎使用GalSceneGenerator-JS】";
+  var txt0 = "欢迎使用GalSceneGenerator-JS";
   var txt1 = "请在上方文本框内输入文本，暂时不支持自动换行。";
   var txt2 = "使用“选择文件”来选择背景图片。";
   var txt3 = "如果不填写说话人名，该行会自动隐藏。";
@@ -13,7 +13,7 @@ $(document).ready(function () {
   cxt.fillRect(0, 0, canvas.width, canvas.height);
   drawDialogText();
 
-  //读取本地文件
+  //注册文件获取事件
   var inputOne = document.getElementById('fileOne');
   inputOne.onchange = function () {
     var fileList = inputOne.files;
@@ -25,7 +25,7 @@ $(document).ready(function () {
       //加载图片
       img = new Image();
       img.onload = function () {
-        drawAll(img);
+        drawAll();
       }
       img.src = dataUrl;
     }
@@ -35,43 +35,69 @@ $(document).ready(function () {
     var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=1280,height=720");
   });
 
+  $('#style').on('change', function () {
+    name = $('#style option:selected').val();
+    switch (name) {
+      case "hanasaki": {
+        $("#bkColor").css("display", "block");
+        break;
+      }
+      case "floflo": {
+        $("#bkColor").css("display", "none");
+        break;
+      }
+    }
+    drawAll();
+  });
+
   $('#gen').click(function () {
     txt1 = $("#text1").val();
     txt2 = $("#text2").val();
     txt3 = $("#text3").val();
-    txt0 = $("#text0").val() !== "" ? "【" + $("#text0").val() + "】" : "";
+    txt0 = $("#text0").val();
+    if (txt0 != "") {
+      txt1 = "「" + txt1;
+      if (txt2 != "") {
+        txt2 = "　" + txt2;
+        if (txt3 != "") {
+          txt3 = "　" + txt3 + "」";
+        } else txt2 = txt2 + "」"
+      } else txt1 = txt1 + "」";
+    }
     drawAll();
   });
 
-  $('#toggle').click(function () {
-    $(this).parent().next("div").animate({ height: 'toggle', opacity: 'toggle' }, 'fast');
-  })
+  // $('#toggle').click(function () {
+  //   $(this).next("div").animate({ height: 'toggle', opacity: 'toggle' }, 'fast');
+  // })
 
-  $('#color').on("input propertychange", function () {
+  $('#bkColor input').on("input propertychange", function () {
     var re = /^[\dabcdef]{6}$/;
     if (!re.test(this.value)) {
-      $(".preview").text('颜色值非法');
-      $(".preview").css("color", "black");
+      $(this).next("span").text('颜色值非法');
+      $(this).next("span").css("color", "black");
       return;
     }
-    $(".preview").text('颜色预览：■');
-    $(".preview").css("color", "#" + this.value.slice(0, 6));
+    $(this).next("span").text('颜色预览：■');
+    $(this).next("span").css("color", "#" + this.value.slice(0, 6));
   });
 
-  $('#trans').on("input propertychange", function () {
+  $('#transparent input').on("input propertychange", function () {
     try {
       test = parseInt(this.value);
       if (this.value === "" || test < 0 || test > 255) throw new error();
     } catch (err) {
-      $(".preview2").text('不透明度值非法');
+      $(this).next("span").text('不透明度值非法');
       return;
     }
-    $(".preview2").text('');
+    $(this).next("span").text('');
   });
 
   function drawAll() {
+    //清除画布
     cxt.clearRect(0, 0, canvas.width, canvas.height);
     cxt.shadowColor = "#ffffff00";
+    //获取背景图片并计算ScaleAspectFit模式的坐标
     try {
       var s = canvas.width / img.width > canvas.height / img.height ? canvas.width / img.width : canvas.height / img.height;
       var w = s * img.width;
@@ -80,21 +106,93 @@ $(document).ready(function () {
       var y = (canvas.height - h) / 2;
       cxt.drawImage(img, x, y, w, h);
     } catch (err) {
+      //如果没有背景图将用这个灰色填充
       cxt.fillStyle = '#cccccc';
       cxt.fillRect(0, 0, canvas.width, canvas.height);
     }
+
     drawDialogText();
   }
 
   function drawDialogText() {
-    trans = parseInt($('#trans').val()).toString(16);
-    if (trans.length === 1) trans = "0" + trans;
-    rgba = $("#color").val() + trans;
+    //获取样式
+    style = $('#style option:selected').val();
+    //透明度十进制转2位十六进制
+    trans = parseInt($('#transparent input').val());
+    scale = trans / 255;
+    a = trans.toString(16);
+    if (a.length === 1) a = "0" + a;
+    rgba = $("#bkColor input").val() + a;
 
-    drawHanasakiDialog(rgba);
-    drawHanasakiText();
+    switch (style) {
+      case "hanasaki": {
+        drawHanasakiDialog(rgba);
+        drawHanasakiText();
+        break;
+      }
+      case "floflo": {
+        drawFlofloDialog(scale);
+        //drawFlofloText();
+        break;
+      }
+    }
 
     $(".preview").text('');
+  }
+
+  function drawFlofloDialog(scale) {
+    imgFloBk = new Image();
+    imgFloBk.onload = function () {
+      cxt.globalAlpha = scale;
+      cxt.drawImage(imgFloBk, 0, 548);
+      cxt.globalAlpha = 1;
+    }
+    imgFloBk.src = "sources/floflo-bk.png";
+
+    imgFloHeart = new Image();
+    imgFloHeart.onload = function () {
+      cxt.drawImage(imgFloHeart, 1050, 648);
+      drawFlofloText();
+    }
+    imgFloHeart.src = "sources/floflo-heart.png";
+  }
+
+  function drawFlofloText() {
+    //cxt.globalCompositeOperation="source-over";
+    cxt.shadowOffsetY = 1;
+    cxt.shadowOffsetX = 2;
+    cxt.shadowBlur = 2;
+    cxt.shadowColor = "#4d0000";
+    cxt.strokeStyle = '#4d0000';
+    cxt.lineWidth = '3';
+    cxt.fillStyle = '#ffffff';
+    cxt.font = '25px 源ノ角ゴシック';
+    cxt.textBaseline = 'top';
+    cxt.strokeText(txt1, 310, 592);
+    cxt.fillText(txt1, 310, 592);
+    cxt.strokeText(txt2, 310, 628);
+    cxt.fillText(txt2, 310, 628);
+    cxt.strokeText(txt3, 310, 664);
+    cxt.fillText(txt3, 310, 664);
+
+    cxt.shadowColor = "#00000000";
+    imgFloBar = new Image();
+    imgFloBar.onload = function () { cxt.drawImage(imgFloBar, 0, 0); }
+    imgFloBar.src = "sources/floflo-toolbar.png";
+
+    if (txt0 !== "") {
+      cxt.shadowColor = "#4d0000";
+      cxt.strokeText(txt0, 305, 553);
+      cxt.fillText(txt0, 305, 553);
+      cxt.shadowColor = "#00000000";
+      imgFloVoice = new Image();
+      imgFloVoice.onload = function () { cxt.drawImage(imgFloVoice, 0, 0); }
+      imgFloVoice.src = "sources/floflo-voice-enable.png";
+    } else {
+      imgFloVoice = new Image();
+      imgFloVoice.onload = function () { cxt.drawImage(imgFloVoice, 0, 0); }
+      imgFloVoice.src = "sources/floflo-voice-disable.png";
+    }
   }
 
   function drawHanasakiDialog(color) {
@@ -153,6 +251,7 @@ $(document).ready(function () {
     img2.src = "sources/hanasaki-toolbar.png";
 
     if (txt0 !== "") {
+      txt0 = "【" + txt0 + "】";
       cxt.shadowColor = "#4c0000";
       cxt.strokeText(txt0, 251, 521);
       cxt.fillText(txt0, 251, 521);
