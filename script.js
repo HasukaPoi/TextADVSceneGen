@@ -43,6 +43,10 @@ $(document).ready(function () {
     drawAll();
   });
 
+  $('#toggle').click(function () {
+    $(this).parent().next("div").animate({ height: 'toggle', opacity: 'toggle' }, 'fast');
+  })
+
   $('#color').on("input propertychange", function () {
     var re = /^[\dabcdef]{6}$/;
     if (!re.test(this.value)) {
