@@ -4,13 +4,38 @@
   <title>GalGame场景生成器</title>
   <style>
     * {
-      font-size: 24
+      font-size: 24px;
+      padding: 0;
+      border: 0;
+      margin: 0;
     }
 
-    input,
+    input{
+      margin:0.5em;
+      padding:0.5em 0;
+      width:25em;
+      border:1px solid black;
+    }
+
     button {
+      line-height: 150%;
+      border: 1px #666666 solid;
       padding: 0.2em;
       margin: 0 0.5em;
+      background-color:#ed3661;
+      color:whitesmoke;
+    }
+
+    button:hover {
+      box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    button:active {
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    }
+
+    p {
+      margin: 0.5em;
     }
 
     #color {
@@ -24,15 +49,18 @@
 
 <body>
   <p>
-    该工具由 <a href="http://hasuka.top">Hasuka</a> 制作，在 <a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a> 上开源。
+    该工具由
+    <a href="http://hasuka.top">Hasuka</a> 制作，在
+    <a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a> 上开源。
     <br>若想报告未提及的bug，以及期望的改进和功能，请提交Issue。也欢迎来点个Star☆
     <br>And... the nerd who made this page doesn't now how to make l10n.
     <br>というわけで英語と日本語バージョンはまだまだスタンドバイ。
     <br>
-    <input id="fileOne" type="file" /><br>↑在这里上传背景图片。
+    <input id="fileOne" type="file" style="border:0;" />
+    <br>↑在这里上传背景图片。
   </p>
   <p>
-    <input id="text0" type="text" placeholder="说话人">
+    <input id="text0" type="text" placeholder="说话人" style="width:10em;">
     <br>
     <input id="text1" type="text" placeholder="第1行">
     <br>
@@ -41,16 +69,17 @@
     <input id="text3" type="text" placeholder="第3行">
   </p>
   <p>当前样式：Hanasaki
+    <br> 不透明度(十进制0~255) #
+    <input id="trans" type="text" value="136" style="width:5em;margin-right:1.5em">
+    <span class="preview2"></span>
     <br>并不建议更改文本框颜色，如果需要的话请
     <button id="toggle" style="padding:0">点击这里</button>。
-    <br>预计近日上线更多样式。</p>
+    <br>预计近日上线更多样式。
+  </p>
   <div style="display:none">
     背景色(十六进制RGB) #
     <input id="color" type="text" value="ed3661" style="width:5em;margin-right:1.5em">
     <span class="preview"></span>
-    <br> 不透明度(十进制0~255) #
-    <input id="trans" type="text" value="136" style="width:5em;margin-right:1.5em">
-    <span class="preview2"></span>
   </div>
   <p>
     <button id="gen">再次生成</button>
