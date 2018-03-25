@@ -2,7 +2,8 @@
 
 <head>
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+  />
   <link rel="Stylesheet" type="text/css" href="style.css">
   <title>文字ADV场景生成器</title>
   <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
@@ -11,54 +12,74 @@
 
 <body>
   <div>
-    该工具由
-    <a href="http://hasuka.top">Hasuka</a> 制作，在
-    <a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a> 上开源。
-    <br>若想报告未提及的bug，以及期望的改进和功能，请提交Issue。也欢迎来点个Star☆
-    <br>And... the nerd who made this page doesn't now how to make l10n.
-    <br>というわけで英語と日本語バージョンはまだまだスタンドバイ。
-  </div>
-  <div>
-    上传背景图片:
-    <input id="fileBk" type="file" style="border:0;" />
-    <br>
-    <input id="urlBk" type="text" placeholder="或者输入图像的URL">
-    <button style="padding:0 0.5em;background-color:#000000">确认</button>
-  </div>
-  <div>
-    <input id="text0" type="text" placeholder="说话人" style="width:10em;">
-    <br>
-    <input id="text1" type="text" placeholder="第1行" style="">
-    <br>
-    <input id="text2" type="text" placeholder="第2行">
-    <br>
-    <input id="text3" type="text" placeholder="第3行">
-  </div>
-  <div>
-    布局样式:
-    <select id="style" style="width:8em">
-      <option value="hanasaki" selected>Hanasaki</option>
-      <option value="floflo">FloFlo</option>
-    </select>
-  </div>
-  <div id="customize">
-    <div id="transparent">不透明度(十进制0~255):
-      <input type="text" value="136" style="width:5em;margin-right:1.5em">
-      <span></span>
+    <div>
+      该工具由
+      <a href="http://hasuka.top">Hasuka</a> 制作，在
+      <a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a> 上开源。
+      <br>若想报告未提及的bug，以及期望的改进和功能，请提交Issue。也欢迎来点个Star☆
+      <br>And... the nerd who made this page doesn't now how to make l10n.
+      <br>というわけで英語と日本語バージョンはまだまだスタンドバイ。
     </div>
     <div>
-      <div id="bkColor" style="display:block">
-        自定义文本框背景色(十六进制RGB) #
-        <input type="text" value="ed3661" style="width:5em;margin-right:1.5em">
-        <span></span>
+      【如果感觉哪里不对，
+      <button class="toggle">请点这里</button>】
+      <div>
+        <div>对话框颜色等不正常？</div>
+        <div>可能您的浏览器没能很好地支持Canvas。本程序已知在Chrome、FireFox(Windows)、Safari(iOS)下工作正常，在部分国产Windows平台浏览器下工作不正常。</div>
+        <div>字体不太对头？</div>
+        <div>若您使用的是Windows/Mac/Linux等桌面OS，请等待后续可能的更新。移动设备还没有办法。</div>
+        <div>不知道怎么保存？</div>
+        <div>如果保存图片按钮不正常工作，试试直接在画布上右键。</div>
       </div>
     </div>
-  </div>
-  <div>
-    <button id="gen">再次生成</button>
-    <button id="save">保存图片</button>
+    <div class="f">
+      <div style="float:none">上传背景图片:</div>
+      <div>
+        <input id="fileBk" type="file" />
+      </div>
+      <div>
+        <input id="urlBk" type="text" placeholder="或者输入图像的URL">
+        <button style="line-height:150%">确认</button>
+      </div>
+    </div>
+
+    <div>
+      <input id="text0" type="text" placeholder="说话人" style="width:15em;">
+      <br>
+      <input id="text1" type="text" placeholder="第1行">
+      <br>
+      <input id="text2" type="text" placeholder="第2行">
+      <br>
+      <input id="text3" type="text" placeholder="第3行">
+
+    </div>
+    <div>
+      布局样式:
+      <select id="style" style="width:8em">
+        <option value="hanasaki" selected>Hanasaki</option>
+        <option value="floflo">FloFlo</option>
+      </select>
+    </div>
+    <div id="customize">
+      <div id="transparent">不透明度(十进制0~255):
+        <input type="text" value="136" style="width:5em;margin-right:1.5em">
+        <span></span>
+      </div>
+      <div>
+        <div id="bkColor" style="display:block">
+          自定义文本框背景色(十六进制RGB) #
+          <input type="text" value="ed3661" style="width:5em;margin-right:1.5em">
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button id="gen" class="gen">再次生成</button>
+      <button id="save" class="gen">保存图片</button>
+    </div>
   </div>
   <canvas id="myCanvas" width="1280" height="720">您的浏览器不支持Canvas，无法使用该工具。</canvas>
+
 
 </body>
 

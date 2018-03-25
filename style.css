@@ -2,23 +2,33 @@ html, html * {
   font-size: 20px;
 }
 
-body {
-  width: 100%;
-  max-width: 1280px;
-}
-
 * {
   padding: 0;
   border: 0;
   margin: 0;
 }
 
-canvas {
-  max-width:1280px;
-  width:99%; 
+body {
+  width: 100%;
+  max-width: 1280px;
 }
 
-input, select {
+body>div {
+  margin: 0;
+  padding: 0.5em;
+}
+
+div:first-child {
+  padding-top: 0;
+}
+
+canvas {
+  min-width: 480px;
+  max-width: 1280px;
+  width: 99%;
+}
+
+input[type=text], select {
   margin: 5px 5px 5px 0;
   padding: 5px;
   width: 100%;
@@ -26,14 +36,39 @@ input, select {
   border: 1px solid rgb(0, 0, 0);
 }
 
+input[type=file] {
+  border: 1px black solid;
+  width: 250px;
+  margin-top: 5px;
+}
+
 button {
-  line-height: 150%;
+  line-height: 100%;
+  border: 1px black solid;
+  padding: 0.1em 0.5em;
+  margin: 0 0.5em;
+  background-color: #37edc3;
+  color: #0a0a0a;
+}
+
+button.gen {
   border: 1px #666666 solid;
-  padding: 0.2em 0.5em;
+  padding: 0.5em 1em;
   margin: 0 0.5em;
   background-color: #ed3661;
   color: whitesmoke;
-  font-size: 30px;
+}
+
+.toggle+div {
+  display: none;
+  border: 1px solid grey;
+  padding:0 1em;
+  max-width: 50em;
+}
+
+.toggle+div div:nth-child(even) {
+  padding-left: 2em;
+  margin-top: 0;
 }
 
 button:hover {
@@ -45,11 +80,17 @@ button:active {
 }
 
 div {
-  margin: 0.5em;
+  margin: 0.5em 0;
 }
 
-div>div {
-  margin-left: 0;
+div.f {
+  float: clear;
+  overflow: auto;
+}
+
+div.f div {
+  float: left;
+  margin: 0;
 }
 
 #color {

@@ -85,9 +85,9 @@ $(document).ready(function () {
     drawAll();
   });
 
-  // $('#toggle').click(function () {
-  //   $(this).next("div").animate({ height: 'toggle', opacity: 'toggle' }, 'fast');
-  // })
+  $('.toggle').click(function () {
+    $(this).next("div").animate({ height: 'toggle', opacity: 'toggle' }, 'fast');
+  })
 
   $('#bkColor input').on("input propertychange", function () {
     var re = /^[\dabcdef]{6}$/;
