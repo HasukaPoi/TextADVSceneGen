@@ -25,7 +25,7 @@
       margin: 0 0.5em;
       background-color: #ed3661;
       color: whitesmoke;
-      font-size:30px;
+      font-size: 30px;
     }
 
     button:hover {
@@ -40,13 +40,17 @@
       margin: 0.5em;
     }
 
-    div>div{
-      margin-left:0;
+    div>div {
+      margin-left: 0;
     }
 
     #color {
       width: 3em;
       margin-right: 1.5em
+    }
+
+    #urlBk {
+      width: 15em;
     }
   </style>
   <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
@@ -64,7 +68,10 @@
   </div>
   <div>
     上传背景图片:
-    <input id="fileOne" type="file" style="border:0;" />
+    <input id="fileBk" type="file" style="border:0;" />
+    <br>
+    <input id="urlBk" type="text" placeholder="或者输入图像的URL">
+    <button style="padding:0 0.5em;background-color:#000000">确认</button>
   </div>
   <div>
     <input id="text0" type="text" placeholder="说话人" style="width:10em;">
@@ -82,17 +89,19 @@
       <option value="floflo">FloFlo</option>
     </select>
   </div>
-  <div id="transparent">不透明度(十进制0~255):
-    <input type="text" value="136" style="width:5em;margin-right:1.5em">
-    <span></span>
-  </div>
-  <div>
-    <div id="bkColor" style="display:block">
-      自定义文本框背景色(十六进制RGB) #
-      <input type="text" value="ed3661" style="width:5em;margin-right:1.5em">
+  <div id="customize">
+    <div id="transparent">不透明度(十进制0~255):
+      <input type="text" value="136" style="width:5em;margin-right:1.5em">
       <span></span>
     </div>
-  </div>
+    <div>
+      <div id="bkColor" style="display:block">
+        自定义文本框背景色(十六进制RGB) #
+        <input type="text" value="ed3661" style="width:5em;margin-right:1.5em">
+        <span></span>
+      </div>
+    </div>
+  </div>>
   <div>
     <button id="gen">再次生成</button>
     <button id="save">保存图片</button>

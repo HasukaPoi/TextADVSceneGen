@@ -14,7 +14,7 @@ $(document).ready(function () {
   drawDialogText();
 
   //注册文件获取事件
-  var inputOne = document.getElementById('fileOne');
+  var inputOne = document.getElementById('fileBk');
   inputOne.onchange = function () {
     var fileList = inputOne.files;
     var file = fileList[0];
@@ -30,6 +30,24 @@ $(document).ready(function () {
       img.src = dataUrl;
     }
   }
+
+
+  $("#urlBk").keydown(function (e) {
+    var curKey = e.which;
+    if (curKey == 13) {
+      $(this).next("button").click();
+    }
+  });
+
+  $("#urlBk").next("button").click(function () {
+
+    img = new Image();
+    img.onload = function () {
+      drawAll();
+    }
+    img.src = $("#urlBk").val();
+
+  });
 
   $('#save').click(function () {
     var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=1280,height=720");
@@ -251,7 +269,7 @@ $(document).ready(function () {
     img2.src = "sources/hanasaki-toolbar.png";
 
     if (txt0 !== "") {
-      txt0 = "【" + txt0 + "】";
+      if (txt0.indexOf("【") < 0) txt0 = "【" + txt0 + "】";
       cxt.shadowColor = "#4c0000";
       cxt.strokeText(txt0, 251, 521);
       cxt.fillText(txt0, 251, 521);
