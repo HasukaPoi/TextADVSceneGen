@@ -1,11 +1,12 @@
 # TextADVSceneGen
-A tool to generate a picture of text-ADV-like scene. [[Hit here to try]](http://hasuka.top/TextADVSceneGen)
+一个可以简单生成类似于文字ADV场景的图片的工具。 [*[点这里立即使用]*](http://hasuka.top/TextADVSceneGen)
 
-Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/GalSceneGenerator).
+原本是 [GalSceneGenerator](https://github.com/HasukaPoi/GalSceneGenerator) 的重写。
 
-## 功能简述
+## 可以做到的
 - 通过传入的背景图片和剧情/对话文本生成一张类似于文字ADV场景截图的图片。
-- 现时样式仿照了*Hanasaki Work Spring!*和*Floral\*Flow Love*。
+- 基于现代浏览器对HTML5中Canvas，以及JavaScript来实现，完全依靠前端。
+- 现时样式仿照了*Hanasaki Work Spring!*和*Floral \* Flowlove*。
 - 根据样式不同自动在说话人两侧加上符号或是在语句前后加上引号等。
 - 可以更改文本框透明度等。
 - 图片不论比例、尺寸如何，会等比缩放至满屏1280*720（用UIKit的话来说就是ScaleAspectFit）。
@@ -18,7 +19,7 @@ Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/Ga
 ### 2018年3月24日
 整理HTML+CSS布局；加入样式：FloFlo。
 
-更改了颜色、透明度自定义框的显示布局。加入了工具栏和文本框右下角的铃铛。加入了自动显示/隐藏的语音重放图标。
+加入了工具栏和Hanasaki文本框右下角的铃铛。加入了自动显示/隐藏的语音重放图标。
 
 ### 2018年3月23日
 加入了简易的颜色选择器（RGBA）。
@@ -32,8 +33,7 @@ Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/Ga
 
 ## TODO
 - 改进字体兼容性
-- 增加更多样式
-- 重写英文版README
+- 增加更多**基于Canvas绘制的**样式
 - etc
 
 ## 测试环境
