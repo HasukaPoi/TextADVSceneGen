@@ -1,63 +1,10 @@
 <html>
 
 <head>
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+  <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <link rel="Stylesheet" type="text/css" href="style.css">
   <title>文字ADV场景生成器</title>
-  <style>
-    * {
-      font-size: 24px;
-      padding: 0;
-      border: 0;
-      margin: 0;
-    }
-    
-    canvas {
-      max-width:1280px;
-      width:99%;
-    }
-
-    input,
-    select {
-      margin: 5px 5px 5px 0;
-      padding: 10px 0;
-      width: 25em;
-      border: 1px solid black;
-    }
-
-    button {
-      line-height: 150%;
-      border: 1px #666666 solid;
-      padding: 0.2em 0.5em;
-      margin: 0 0.5em;
-      background-color: #ed3661;
-      color: whitesmoke;
-      font-size: 30px;
-    }
-
-    button:hover {
-      box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.5);
-    }
-
-    button:active {
-      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
-    }
-
-    div {
-      margin: 0.5em;
-    }
-
-    div>div {
-      margin-left: 0;
-    }
-
-    #color {
-      width: 3em;
-      margin-right: 1.5em
-    }
-
-    #urlBk {
-      width: 15em;
-    }
-  </style>
   <script type="text/javascript" src="https://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
   <script src="script.js"></script>
 </head>
@@ -81,7 +28,7 @@
   <div>
     <input id="text0" type="text" placeholder="说话人" style="width:10em;">
     <br>
-    <input id="text1" type="text" placeholder="第1行">
+    <input id="text1" type="text" placeholder="第1行" style="">
     <br>
     <input id="text2" type="text" placeholder="第2行">
     <br>
@@ -106,7 +53,7 @@
         <span></span>
       </div>
     </div>
-  </div>>
+  </div>
   <div>
     <button id="gen">再次生成</button>
     <button id="save">保存图片</button>

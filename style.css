@@ -1,0 +1,57 @@
+html, html * {
+  font-size: 20px;
+}
+
+body {
+  width: 100%;
+  max-width: 1280px;
+}
+
+* {
+  padding: 0;
+  border: 0;
+  margin: 0;
+}
+
+input, select {
+  margin: 5px 5px 5px 0;
+  padding: 5px;
+  width: 100%;
+  max-width: 50em;
+  border: 1px solid rgb(0, 0, 0);
+}
+
+button {
+  line-height: 150%;
+  border: 1px #666666 solid;
+  padding: 0.2em 0.5em;
+  margin: 0 0.5em;
+  background-color: #ed3661;
+  color: whitesmoke;
+  font-size: 30px;
+}
+
+button:hover {
+  box-shadow: 2px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+button:active {
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+}
+
+div {
+  margin: 0.5em;
+}
+
+div>div {
+  margin-left: 0;
+}
+
+#color {
+  width: 3em;
+  margin-right: 1.5em
+}
+
+#urlBk {
+  width: 15em;
+}
