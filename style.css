@@ -13,6 +13,11 @@ body {
   margin: 0;
 }
 
+canvas {
+  max-width:1280px;
+  width:99%; 
+}
+
 input, select {
   margin: 5px 5px 5px 0;
   padding: 5px;
