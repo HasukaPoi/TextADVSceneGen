@@ -38,7 +38,7 @@ Started this project.
 - Add more style FULLY BASED ON CANVAS.
 - etc
 
-## 测试环境
+## Test Environment
 Chrome 63 (64-bit), Windows 10: Works well. Output picture can be saved by right-click.
 
 Safari, iOS 11.2.6 (iPhone 7 Plus) : Works well (including save button)
