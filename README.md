@@ -1,5 +1,5 @@
-# GalSceneGenerator-JS
-A tool to generate a picture of text-ADV-like scene. [[Hit here to try]](http://hasuka.top/GalSceneGenerator-JS)
+# TextADVSceneGen
+A tool to generate a picture of text-ADV-like scene. [[Hit here to try]](http://hasuka.top/TextADVSceneGen)
 
 Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/GalSceneGenerator).
 
