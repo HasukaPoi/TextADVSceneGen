@@ -3,16 +3,21 @@
 
 原本是 [GalSceneGenerator](https://github.com/HasukaPoi/GalSceneGenerator) 的重写。
 
+不想写了好麻烦，学习学习就行了。
+
 ## 可以做到的
 - 通过传入的背景图片和剧情/对话文本生成一张类似于文字ADV场景截图的图片。
 - 基于现代浏览器对HTML5中Canvas，以及JavaScript来实现，完全依靠前端。
 - 现时样式仿照了*Hanasaki Work Spring!*和*Floral \* Flowlove*。
+- (新) 加入了可以高度定制的样式（太麻烦了不打算继续写）。
 - 根据样式不同自动在说话人两侧加上符号或是在语句前后加上引号等。
 - 可以更改文本框透明度等。
 - 图片不论比例、尺寸如何，会等比缩放至满屏1280*720（用UIKit的话来说就是ScaleAspectFit）。
 
-
 ## 开发进度
+### 2018年3月26日
+加入了可以高度定制的样式（太麻烦了不打算继续写）。
+
 ### 2018年3月25日
 更改Repo名（GalSceneGenerator-JS → TextADVSceneGen）。分离中文版README。
 
@@ -32,8 +37,7 @@
 立项。
 
 ## TODO
-- 改进字体兼容性
-- 增加更多**基于Canvas绘制的**样式
+- 重新组织js代码结构。
 - etc
 
 ## 测试环境

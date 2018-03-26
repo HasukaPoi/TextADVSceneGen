@@ -9,14 +9,17 @@ Originally as the rewrite of [GalSceneGenerator](https://github.com/HasukaPoi/Ga
 - Simply generate a text-ADV-like scene, using inputs of background image and senario text.
 - Based on Canvas in HTML5 and JavaScript, which supported by modern web browsers.
 - The style of dialog box and toolbar base on *Hanasaki Work Spring* & *Floral \* Flowlove*.
+- (New) Added a highly-customable style.
 - Depends on with/without speaker's name, brackets and quotes will be set automatically.
 - The transparency of dialog box can be modified.
 - Whatever the aspect ratio of background image is, the output picture will be 1280*720 in ScaleAspectFit. 
 
 ## Update footprint
+### Mar 26, 2018
+Added a highly-customable style.
+
 ### Mar 25, 2018
 Changed name of this repo(GalSceneGenerator-JS -> TextADVSceneGen). Splitted Chinese version of README.
-
 
 ### Mar 24, 2018
 Re-arranged HTML layout and stylesheet. New style added: FloFlo.
@@ -34,8 +37,7 @@ Try to build the code. The save button may not work in all environment.
 Started this project.
 
 ## TODO
-- Improve the compatibility of font.
-- Add more style FULLY BASED ON CANVAS.
+- Re-arrange code structure.
 - etc
 
 ## Test Environment
