@@ -23,7 +23,7 @@
     <div>
       【如果感觉哪里不对，
       <button class="toggle">请点这里</button>】
-      <div>
+      <div id="mondai">
         <div>对话框颜色等不正常？</div>
         <div>可能您的浏览器没能很好地支持Canvas。本程序已知在Chrome、FireFox(Windows)、Safari(iOS)下工作正常，在部分国产Windows平台浏览器下工作不正常。</div>
         <div>字体不太对头？</div>
@@ -55,28 +55,49 @@
     </div>
     <div>
       布局样式:
-      <select id="style" style="width:8em">
-        <option value="hanasaki" selected>Hanasaki</option>
-        <option value="floflo">FloFlo</option>
+      <select id="style" style="width:10em">
+        <option value="hanasaki">*Hanasaki</option>
+        <option value="RoundRect" selected>Round Rect</option>
+        <option value="floflo">*FloFlo</option>
       </select>
     </div>
-    <div id="customize">
+    <button class="toggle" style="line-height:150%; padding-left:1em;padding-right:1em">展开/收缩自定义选项</button>
+    <div id="customize" style="display:block">
+      <div id="font">字体:
+        <input type="text" value="源ノ角ゴシック" style="width:10em">
+        <span>＊默认为思源黑体(日语)</span>
+      </div>
       <div id="transparent">不透明度(十进制0~255):
-        <input type="text" value="136" style="width:5em;margin-right:1.5em">
+        <input type="text" value="102">
         <span></span>
       </div>
-      <div>
-        <div id="bkColor" style="display:block">
-          自定义文本框背景色(十六进制RGB) #
-          <input type="text" value="ed3661" style="width:5em;margin-right:1.5em">
-          <span></span>
+      <div id="extend">
+        <div>
+          <div id="bkColor" style="display:block">
+            文本框背景色(十六进制RGB) #
+            <input type="text" value="40e0d0">
+            <span></span>
+          </div>
+        </div>
+        <div id="bordercolor">
+          边框线颜色(十六进制RGB) #
+          <input type="text" value="ffffff">
+        </div>
+        <div id="widthPick">
+          宽度(px)
+          <input type="text" value="1000">
+        </div>
+        <div id="radius">
+          圆角半径(px)
+          <input type="text" value="5">
         </div>
       </div>
     </div>
-    <div>
-      <button id="gen" class="gen">再次生成</button>
-      <button id="save" class="gen">保存图片</button>
-    </div>
+
+  </div>
+  <div>
+    <button id="gen" class="gen">再次生成</button>
+    <button id="save" class="gen">保存图片</button>
   </div>
   <canvas id="myCanvas" width="1280" height="720">您的浏览器不支持Canvas，无法使用该工具。</canvas>
 

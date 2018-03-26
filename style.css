@@ -1,5 +1,5 @@
 html, html * {
-  font-size: 20px;
+  font-size: 16px;
 }
 
 * {
@@ -59,6 +59,16 @@ button.gen {
   color: whitesmoke;
 }
 
+#customize input {
+  width:5em;
+  margin-left:0;
+}
+
+#customize input+span {
+  color: blue;
+  padding-left:1em;
+}
+
 .toggle+div {
   display: none;
   border: 1px solid grey;
@@ -66,7 +76,7 @@ button.gen {
   max-width: 50em;
 }
 
-.toggle+div div:nth-child(even) {
+.mondai div:nth-child(even) {
   padding-left: 2em;
   margin-top: 0;
 }
