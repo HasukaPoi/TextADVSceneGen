@@ -49,6 +49,10 @@ $(document).ready(function () {
 
   });
 
+  $("#font").children("select").change(function(){
+    $("#font").children("input").val($("#font").children("select").val());
+  });
+
   $('#save').click(function () {
     var w = window.open(canvas.toDataURL("image/jpeg"), "smallwin", "width=1280,height=720");
   });

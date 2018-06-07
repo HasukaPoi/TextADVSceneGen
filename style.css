@@ -47,15 +47,15 @@ button {
   border: 1px black solid;
   padding: 0.1em 0.5em;
   margin: 0 0.5em;
-  background-color: #37edc3;
-  color: #0a0a0a;
+  background-color: #fdaa8a;
+  color: #ffffff;
 }
 
 button.gen {
   border: 1px #666666 solid;
   padding: 0.5em 1em;
   margin: 0 0.5em;
-  background-color: #ed3661;
+  background-color: #dd5f73;
   color: whitesmoke;
 }
 
