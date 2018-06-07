@@ -17,17 +17,16 @@
       <a href="http://hasuka.top">Hasuka</a> 制作，在
       <a href="https://github.com/HasukaPoi/GalSceneGenerator-JS">GitHub</a> 上开源。
       <br>若想报告未提及的bug，以及期望的改进和功能，请提交Issue。也欢迎来点个Star☆
-      <br>And... the nerd who made this page doesn't now how to make l10n.
-      <br>というわけで英語と日本語バージョンはまだまだスタンドバイ。
+      <br>暂时不考虑提供英/日语界面。
     </div>
     <div>
-      【如果感觉哪里不对，
+      【一些注意事项→
       <button class="toggle">请点这里</button>】
       <div id="mondai">
         <div>对话框颜色等不正常？</div>
         <div>可能您的浏览器没能很好地支持Canvas。本程序已知在Chrome、FireFox(Windows)、Safari(iOS)下工作正常，在部分国产Windows平台浏览器下工作不正常。</div>
-        <div>字体不太对头？</div>
-        <div>若您使用的是Windows/Mac/Linux等桌面OS，请等待后续可能的更新。移动设备还没有办法。</div>
+        <div>关于字体——</div>
+        <div>Windows下可以直接使用字体的英文名（有空格的请在两端加半角双引号）。<br>iOS下可以使用下拉框里的PingFangSC-SemiBold（苹方，也可以改别的字重）。Android的字体名字开发者不知道。</div>
         <div>不知道怎么保存？</div>
         <div>如果保存图片按钮不正常工作，试试直接在画布上右键。</div>
       </div>
@@ -56,19 +55,23 @@
     <div>
       布局样式:
       <select id="style" style="width:10em">
-        <option value="hanasaki">*Hanasaki</option>
-        <option value="RoundRect" selected>Round Rect</option>
+        <option value="hanasaki">*花咲</option>
+        <option value="RoundRect" selected>普通的圆角矩形</option>
         <option value="floflo">*FloFlo</option>
       </select>
     </div>
     <button class="toggle" style="line-height:150%; padding-left:1em;padding-right:1em">展开/收缩自定义选项</button>
     <div id="customize" style="display:block">
       <div id="font">字体:
-        <input type="text" value="源ノ角ゴシック" style="width:10em">
-        <span>＊默认为思源黑体(日语)</span>
+        <input type="text" value="源ノ角ゴシック" style="width:15em">
+        <select style="width:15em">
+          <option>在这里选字体看看？</option>
+          <option>PingFangSC-SemiBold</option>
+          <option>源ノ角ゴシック</option>
+        </select>
       </div>
       <div id="transparent">不透明度(十进制0~255):
-        <input type="text" value="102">
+        <input type="text" value="128">
         <span></span>
       </div>
       <div id="extend">
